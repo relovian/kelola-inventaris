@@ -48,6 +48,7 @@ h1, table {
     <table border=1>
         <thead>
             <tr>
+                <th>No</th>
                 <th>Kode Barang</th>
                 <th>Nama Barang</th>
                 <th>Kategori</th>
@@ -56,16 +57,20 @@ h1, table {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>ATK-001</td>
-                <td>Kertas HVS</td>
-                <td>Alat Tulis Kantor</td>
-                <td>30</td>
-                <td>
-                    <a href="">edit</a>
-                    <a href="">hapus</a>
-                </td>
-            </tr>
+            @foreach ( $persediaan as $item)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->kode_barang }}</td>
+                    <td>{{ $item->nama_barang }}</td>
+                    <td>{{ $item->kategori }}</td>
+                    <td>{{ $item->jumlah }}</td>
+                    <td>
+                        <a href="">edit</a>
+                        <a href="">hapus</a>
+                    </td>
+                </tr>
+                
+            @endforeach
         </tbody>
     </table>
 </body>

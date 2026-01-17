@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\persediaan;
 use Illuminate\Http\Request;
 
 class inventarisController extends Controller
@@ -11,7 +12,8 @@ class inventarisController extends Controller
      */
     public function index()
     {
-        return view('inventaris.index');
+        $persediaan = persediaan::all();
+        return view('inventaris.index', compact('persediaan'));
     }
 
     /**
