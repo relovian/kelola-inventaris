@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manajemen Inventaris</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #B3D0FF;
+    margin-bottom: 80px;
+}
+
+nav .link a {
+    margin-left: 15px;
+    color: black;
+    text-decoration: none;
+}
+
+h1, table {
+    margin-left: 400px;
+}
+
+
+
+</style>
+<body>
+    <nav>
+        <div class="title"><h3>Manajemen Inventaris</h3></div>
+        <div class="link">
+            <a href="">Persediaan</a>
+            <a href="">Pengelolaan</a>
+            <a href="">Peminjaman</a>
+        </div>
+    </nav>
+
+    <h1>Persediaan</h1>
+
+    <table border=1>
+        <thead>
+            <tr>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Kategori</th>
+                <th>Jumlah</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ATK-001</td>
+                <td>Kertas HVS</td>
+                <td>Alat Tulis Kantor</td>
+                <td>30</td>
+                <td>
+                    <a href="">edit</a>
+                    <a href="">hapus</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
