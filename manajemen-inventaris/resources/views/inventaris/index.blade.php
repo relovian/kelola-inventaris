@@ -26,7 +26,7 @@ nav .link a {
     text-decoration: none;
 }
 
-h1, table {
+h1, table, .tambah{
     margin-left: 400px;
 }
 
@@ -65,7 +65,7 @@ h1, table {
                     <td>{{ $item->kategori }}</td>
                     <td>{{ $item->jumlah }}</td>
                     <td>
-                        <a href="">edit</a>
+                        <a href="/">edit</a>
                         <a href="">hapus</a>
                     </td>
                 </tr>
@@ -73,5 +73,7 @@ h1, table {
             @endforeach
         </tbody>
     </table>
+
+    <a href="/TambahPersediaan" class="tambah">Tambah persediaan</a>
 </body>
 </html>
