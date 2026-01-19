@@ -26,7 +26,7 @@ nav .link a {
     text-decoration: none;
 }
 
-h1, table, .tambah{
+h1, table, .tambah, .box-information{
     margin-left: 400px;
 }
 
@@ -44,6 +44,26 @@ h1, table, .tambah{
     </nav>
 
     <h1>Persediaan</h1>
+
+    @if (session('success'))
+
+        <div class="box-information"><p style="color: green;">{{ session('success') }}</p></div>
+                
+    @endif
+
+    @if ($errors->any())
+    
+        <div class="box-information">
+            <ul>
+                @foreach ($errors->all() as $error)
+
+                    <li style="color: red;">{{ $error }}</li>
+
+                @endforeach
+            </ul>
+        </div>
+        
+    @endif
 
     <table border=1>
         <thead>

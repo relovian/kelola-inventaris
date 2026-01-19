@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class persediaan extends Model
 {
+    public $timestamps = false;
     protected $table = 'persediaan';
     protected $fillable = ['kode_barang', 'nama_barang', 'kategori', 'jumlah'];
 }

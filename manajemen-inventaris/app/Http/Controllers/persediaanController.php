@@ -29,7 +29,20 @@ class persediaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $validated = $request->validate([
+                'kode_barang' => 'required|min:3',
+                'nama_barang' => 'required|min:3',
+                'kategori' => 'required',
+                'jumlah' => 'nullable'
+            ]);
+
+            persediaan::create($validated);
+            return redirect()->route('buku.index')->with('success', 'data berhasil ditambahkan');
+        } catch (\Exception $e) {
+            return redirect()->route('buku.index')->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
