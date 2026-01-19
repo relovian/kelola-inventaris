@@ -9,7 +9,7 @@
 <body>
     <h1>Tambah Persediaan</h1>
 
-    <form action="{{ route('buku.store') }}" method="POST">
+    <form action="{{ route('persediaan.store') }}" method="POST">
         @csrf
         <label for="kode_barang">Kode Barang : </label> <br>
         <input type="text" id="kode_barang" name="kode_barang"> <br>

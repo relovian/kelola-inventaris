@@ -85,7 +85,7 @@ h1, table, .tambah, .box-information{
                     <td>{{ $item->kategori }}</td>
                     <td>{{ $item->jumlah }}</td>
                     <td>
-                        <a href="/">edit</a>
+                        <a href="{{ route('persediaan.edit', ['id' => $item->id]) }}">edit</a>
                         <a href="">hapus</a>
                     </td>
                 </tr>

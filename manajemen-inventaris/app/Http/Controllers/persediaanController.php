@@ -39,9 +39,9 @@ class persediaanController extends Controller
             ]);
 
             persediaan::create($validated);
-            return redirect()->route('buku.index')->with('success', 'data berhasil ditambahkan');
+            return redirect()->route('persediaan.index')->with('success', 'data berhasil ditambahkan');
         } catch (\Exception $e) {
-            return redirect()->route('buku.index')->withErrors(['error' => $e->getMessage()]);
+            return redirect()->route('persediaan.index')->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -58,7 +58,9 @@ class persediaanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $persediaan = persediaan::all();
+        $persediaanDetail = persediaan::findOrFail($id);
+        return view('inventaris.formEditPersediaan', compact('persediaan', 'persediaanDetail'));
     }
 
     /**
@@ -66,7 +68,18 @@ class persediaanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+
+            $validated = $request->validate([
+                'kode_barang' => 'required|min:3',
+                'nama_barang' => 'required|min:3',
+                'kategori' => 'required',
+                'jumlah' => 'nullable'
+            ]);
+
+            persediaan::where('id', $id)->update($validated);
+            return redirect()->route('persediaan.index')->with('success', 'data berhasil diperbaharui');
+        
     }
 
     /**
