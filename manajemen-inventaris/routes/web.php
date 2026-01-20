@@ -8,3 +8,4 @@ Route::post('/', [persediaanController::class, 'store'])->name('persediaan.store
 Route::get('/TambahPersediaan', [persediaanController::class, 'create']);
 Route::get('persediaan/{id}/edit', [persediaanController::class, 'edit'])->name('persediaan.edit');
 Route::put('persediaan/{id}/update', [persediaanController::class, 'update'])->name('persediaan.update');
+Route::get('persediaan/{id}/delete', [persediaanController::class, 'destroy'])->name('persediaan.destroy');

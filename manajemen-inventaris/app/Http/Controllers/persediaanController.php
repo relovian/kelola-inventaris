@@ -87,6 +87,14 @@ class persediaanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //   $validated = $request->validate([
+        //         'kode_barang' => 'required|min:3',
+        //         'nama_barang' => 'required|min:3',
+        //         'kategori' => 'required',
+        //         'jumlah' => 'nullable'
+        // ]);
+
+            persediaan::where('id', $id)->delete();
+            return redirect()->route('persediaan.index')->with('success', 'data berhasil dihapus');
     }
 }

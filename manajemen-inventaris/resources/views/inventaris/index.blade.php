@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,35 +8,45 @@
     <title>Manajemen Inventaris</title>
 </head>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-}
+    * {
+        margin: 0;
+        padding: 0;
+    }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #B3D0FF;
-    margin-bottom: 80px;
-}
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #B3D0FF;
+        margin-bottom: 80px;
+    }
 
-nav .link a {
-    margin-left: 15px;
-    color: black;
-    text-decoration: none;
-}
+    nav .link a {
+        margin-left: 15px;
+        color: black;
+        text-decoration: none;
+    }
 
-h1, table, .tambah, .box-information{
-    margin-left: 400px;
-}
-
-
-
+    h1,
+    table,
+    .tambah,
+    .box-information {
+        margin-left: 400px;
+    }
+    
+    .warning-box {
+        margin-top: 20px;
+        margin-left: 400px;
+        font-style: italic;
+        color: red;
+    }
 </style>
+
 <body>
     <nav>
-        <div class="title"><h3>Manajemen Inventaris</h3></div>
+        <div class="title">
+            <h3>Manajemen Inventaris</h3>
+        </div>
         <div class="link">
             <a href="">Persediaan</a>
             <a href="">Pengelolaan</a>
@@ -46,23 +57,21 @@ h1, table, .tambah, .box-information{
     <h1>Persediaan</h1>
 
     @if (session('success'))
-
-        <div class="box-information"><p style="color: green;">{{ session('success') }}</p></div>
-                
+        <div class="box-information">
+            <p style="color: green;">{{ session('success') }}</p>
+        </div>
     @endif
 
     @if ($errors->any())
-    
+
         <div class="box-information">
             <ul>
                 @foreach ($errors->all() as $error)
-
                     <li style="color: red;">{{ $error }}</li>
-
                 @endforeach
             </ul>
         </div>
-        
+
     @endif
 
     <table border=1>
@@ -77,23 +86,31 @@ h1, table, .tambah, .box-information{
             </tr>
         </thead>
         <tbody>
-            @foreach ( $persediaan as $item)
+            @foreach ($persediaan as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->kode_barang }}</td>
                     <td>{{ $item->nama_barang }}</td>
                     <td>{{ $item->kategori }}</td>
-                    <td>{{ $item->jumlah }}</td>
+
+                    @if ($item->jumlah < 50)
+                        <td style="color: red;">{{ $item->jumlah }}</td>
+                    @else
+                        <td>{{ $item->jumlah }}</td>
+                    @endif
+
                     <td>
                         <a href="{{ route('persediaan.edit', ['id' => $item->id]) }}">edit</a>
-                        <a href="">hapus</a>
+                        <a href="{{ route('persediaan.destroy', ['id' => $item->id]) }}">hapus</a>
                     </td>
                 </tr>
-                
             @endforeach
         </tbody>
     </table>
 
     <a href="/TambahPersediaan" class="tambah">Tambah persediaan</a>
+
+    <p class="warning-box"> ⚠️ Teks Warna Merah = Stok Hampir Habis</p>
 </body>
+
 </html>
