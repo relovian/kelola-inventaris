@@ -50,7 +50,7 @@
         <div class="link">
             <a href="">Persediaan</a>
             <a href="">Pengelolaan</a>
-            <a href="">Peminjaman</a>
+            <a href="{{ route('peminjaman.index') }}">Peminjaman</a>
         </div>
     </nav>
 

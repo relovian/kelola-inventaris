@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\peminjamanController;
 use App\Http\Controllers\persediaanController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,3 +10,4 @@ Route::get('/TambahPersediaan', [persediaanController::class, 'create']);
 Route::get('persediaan/{id}/edit', [persediaanController::class, 'edit'])->name('persediaan.edit');
 Route::put('persediaan/{id}/update', [persediaanController::class, 'update'])->name('persediaan.update');
 Route::get('persediaan/{id}/delete', [persediaanController::class, 'destroy'])->name('persediaan.destroy');
+Route::get('peminjaman', [peminjamanController::class, 'index'])->name('peminjaman.index');
