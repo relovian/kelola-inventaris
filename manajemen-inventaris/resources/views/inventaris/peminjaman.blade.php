@@ -105,7 +105,7 @@
             @endforeach
         </tbody>
     </table>
-    <a href="/TambahPeminajamn" class="tambah">Tambah peminjaman</a>
+    <a href="/TambahPeminjaman" class="tambah">Tambah peminjaman</a>
 </body>
 
 </html>

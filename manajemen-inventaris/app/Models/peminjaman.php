@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\peminjamanController;
 use Illuminate\Database\Eloquent\Model;
 
-class persediaan extends Model
+class peminjaman extends Model
 {
     public $timestamps = false;
-    protected $table = 'persediaan';
-    protected $fillable = ['kode_barang', 'nama_barang', 'kategori', 'jumlah'];
+    protected $table = 'peminjaman';
+    protected $fillable = ['id_persediaan', 'kode_barang', 'nama_barang', 'jumlah', 'username', 'tanggal_pinjam', 'tanggal_kembali'];
+
     public function peminjaman()
     {
         return $this->hasMany(Peminjaman::class, 'id_persediaan');
     }
 }
-

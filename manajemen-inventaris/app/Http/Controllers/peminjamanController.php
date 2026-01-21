@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\peminjaman;
+use App\Models\persediaan;
 use Illuminate\Http\Request;
 
 class peminjamanController extends Controller
@@ -22,6 +23,7 @@ class peminjamanController extends Controller
     public function create()
     {
         //
+        return view('inventaris.formPeminjaman');
     }
 
     /**
@@ -29,7 +31,29 @@ class peminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'kode_barang' => 'required:min3',
+            'jumlah' => 'required',
+            'username' => 'required'
+        ]);
+
+        $persediaan = persediaan::where('kode_barang', $validated['kode_barang'])->firstOrFail();
+
+
+        $validated = $request->validate([
+            'kode_barang' => 'required|exists:persediaan,kode_barang',
+            'jumlah'      => 'required|integer|min:1',
+            'username'    => 'required|string|min:3',
+            'tanggal_kembali' => 'nullable|date',
+        ]);
+
+        $persediaan->peminjaman()->create([
+            'kode_barang' => $persediaan->kode_barang,
+            'nama_barang' => $persediaan->nama_barang,
+            'jumlah' => $validated['jumlah'] ,
+            'username' => $validated['username'],
+            'tanggal_pinjam' => now()->toDateString(),
+        ]);
     }
 
     /**

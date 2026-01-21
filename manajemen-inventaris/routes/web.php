@@ -11,3 +11,5 @@ Route::get('persediaan/{id}/edit', [persediaanController::class, 'edit'])->name(
 Route::put('persediaan/{id}/update', [persediaanController::class, 'update'])->name('persediaan.update');
 Route::get('persediaan/{id}/delete', [persediaanController::class, 'destroy'])->name('persediaan.destroy');
 Route::get('peminjaman', [peminjamanController::class, 'index'])->name('peminjaman.index');
+Route::post('peminjaman', [peminjamanController::class, 'store'])->name('peminjaman.store');
+Route::get('/TambahPeminjaman', [peminjamanController::class, 'create'])->name('peminjaman.create');
