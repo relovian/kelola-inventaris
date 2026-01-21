@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\peminjaman;
 use Illuminate\Http\Request;
 
 class peminjamanController extends Controller
@@ -11,7 +12,8 @@ class peminjamanController extends Controller
      */
     public function index()
     {
-        return view('inventaris.peminjaman');
+        $peminjaman = peminjaman::all();
+        return view('inventaris.peminjaman', compact('peminjaman'));
     }
 
     /**

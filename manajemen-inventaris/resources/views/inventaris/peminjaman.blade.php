@@ -73,14 +73,12 @@
 
     @endif --}}
 
-
     <table border=1>
         <thead>
             <tr>
                 <th>no</th>
                 <th>kode barang</th>
                 <th>nama barang</th>
-                <th>jumlah</th>
                 <th>jumlah</th>
                 <th>username</th>
                 <th>tanggal pinjam</th>
@@ -89,14 +87,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-            </tr>
+            @foreach ($peminjaman as $item)
+
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->kode_barang }}</td>
+                    <td>{{ $item->nama_barang }}</td>
+                    <td>{{ $item->jumlah }}</td>
+                    <td>{{ $item->username }}</td>
+                    <td>{{ $item->tanggal_pinjam }}</td>
+                    <td>{{ $item->tanggal_kembali }}</td>
+                    <td>
+                        <a href="">edit</a>
+                        <a href="">hapus</a>
+                    </td>
+                </tr>   
+            @endforeach
         </tbody>
     </table>
     <a href="/TambahPeminajamn" class="tambah">Tambah peminjaman</a>
-
-    <p class="warning-box"> ⚠️ Teks Warna Merah = Stok Hampir Habis</p>
 </body>
 
 </html>
