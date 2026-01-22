@@ -55,13 +55,13 @@
 
     <h1>Peminjaman</h1>
 
-    {{-- @if (session('success'))
+    @if (session('success'))
         <div class="box-information">
             <p style="color: green;">{{ session('success') }}</p>
         </div>
-    @endif --}}
+    @endif
 
-    {{-- @if ($errors->any())
+    @if ($errors->any())
 
         <div class="box-information">
             <ul>
@@ -71,7 +71,7 @@
             </ul>
         </div>
 
-    @endif --}}
+    @endif
 
     <table border=1>
         <thead>
@@ -98,8 +98,8 @@
                     <td>{{ $item->tanggal_pinjam }}</td>
                     <td>{{ $item->tanggal_kembali }}</td>
                     <td>
-                        <a href="">edit</a>
-                        <a href="">hapus</a>
+                        <a href="{{ route('peminjaman.edit', ['id' =>  $item->id]) }}">edit</a>
+                        <a href="{{ route('peminjaman.destroy', ['id' => $item->id]) }}">hapus</a>
                     </td>
                 </tr>   
             @endforeach

@@ -13,3 +13,6 @@ Route::get('persediaan/{id}/delete', [persediaanController::class, 'destroy'])->
 Route::get('peminjaman', [peminjamanController::class, 'index'])->name('peminjaman.index');
 Route::post('peminjaman', [peminjamanController::class, 'store'])->name('peminjaman.store');
 Route::get('/TambahPeminjaman', [peminjamanController::class, 'create'])->name('peminjaman.create');
+Route::get('peminjaman/{id}/edit', [peminjamanController::class, 'edit'])->name('peminjaman.edit');
+Route::put('peminjaman/{id}/update', [peminjamanController::class, 'update'])->name('peminjaman.update');
+Route::get('peminjaman/{id}/destroy', [peminjamanController::class, 'destroy'])->name('peminjaman.destroy');

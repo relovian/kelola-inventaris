@@ -10,7 +10,7 @@
     <h1>Tambah Peminjaman</h1>
     <form action="{{ route('peminjaman.store') }}" method="POST">
         @csrf
-        <label for="kode_barang">kode_barang</label> <br>
+        <label for="kode barang">kode barang</label> <br>
         <input type="text" name="kode_barang" id="kode_barang"> <br>
         <label for="jumlah">jumlah</label> <br>
         <input type="number" name="jumlah" id="jumlah"> <br>
