@@ -11,7 +11,7 @@ class pengelolaanController extends Controller
      */
     public function index()
     {
-        //
+        return view('inventaris.pengelolaan');
     }
 
     /**

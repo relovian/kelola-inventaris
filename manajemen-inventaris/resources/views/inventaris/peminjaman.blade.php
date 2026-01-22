@@ -48,7 +48,7 @@
         </div>
         <div class="link">
             <a href="{{ route('persediaan.index') }}">Persediaan</a>
-            <a href="">Pengelolaan</a>
+            <a href="{{ route('pengelolaan.index') }}">Pengelolaan</a>
             <a href="{{ route('peminjaman.index') }}">Peminjaman</a>
         </div>
     </nav>

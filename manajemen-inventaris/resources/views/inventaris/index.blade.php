@@ -48,8 +48,8 @@
             <h3>Manajemen Inventaris</h3>
         </div>
         <div class="link">
-            <a href="">Persediaan</a>
-            <a href="">Pengelolaan</a>
+            <a href="{{ route('persediaan.index') }}">Persediaan</a>
+            <a href="{{ route('pengelolaan.index') }}">Pengelolaan</a>
             <a href="{{ route('peminjaman.index') }}">Peminjaman</a>
         </div>
     </nav>

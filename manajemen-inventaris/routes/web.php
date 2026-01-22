@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\peminjamanController;
+use App\Http\Controllers\pengelolaanController;
 use App\Http\Controllers\persediaanController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,4 @@ Route::get('/TambahPeminjaman', [peminjamanController::class, 'create'])->name('
 Route::get('peminjaman/{id}/edit', [peminjamanController::class, 'edit'])->name('peminjaman.edit');
 Route::put('peminjaman/{id}/update', [peminjamanController::class, 'update'])->name('peminjaman.update');
 Route::get('peminjaman/{id}/destroy', [peminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+Route::get('pengelolaan', [pengelolaanController::class, 'index'])->name('pengelolaan.index');
