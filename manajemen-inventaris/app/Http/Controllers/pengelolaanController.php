@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pengelolaan;
 use Illuminate\Http\Request;
 
 class pengelolaanController extends Controller
@@ -11,7 +12,8 @@ class pengelolaanController extends Controller
      */
     public function index()
     {
-        return view('inventaris.pengelolaan');
+        $pengelolaan = pengelolaan::all();
+        return view('inventaris.pengelolaan', compact('pengelolaan'));
     }
 
     /**
