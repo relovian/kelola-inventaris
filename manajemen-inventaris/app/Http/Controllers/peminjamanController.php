@@ -118,7 +118,6 @@ class peminjamanController extends Controller
 
         $persediaan = persediaan::where('kode_barang', $validated['kode_barang'])->firstOrFail();
 
-
         $validated = $request->validate([
             'kode_barang' => 'required|exists:persediaan,kode_barang',
             'jumlah' => 'required|integer|min:1',
@@ -133,6 +132,18 @@ class peminjamanController extends Controller
             'username' => $validated['username'],
             'tanggal_kembali' => $validated['tanggal_kembali']
         ]);
+
+        $peminjaman = peminjaman::findOrFail($id);
+
+        if ($peminjaman->tanggal_kembali !== null) {
+            $pengelolaan = pengelolaan::where('id', $persediaan->id)->update([
+                'keluar_stok' => 0
+            ]);
+
+            $peminajaman = peminjaman::where('id', $peminjaman->id)->update([
+                'jumlah' => 0,
+            ]);
+        }
 
         return redirect()->route('peminjaman.index')->with('success', 'peminjaman berhasil di edit');
     }
