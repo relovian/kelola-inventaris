@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\pengelolaan;
 
 class peminjaman extends Model
 {
@@ -10,8 +11,20 @@ class peminjaman extends Model
     protected $table = 'peminjaman';
     protected $fillable = ['id_persediaan', 'kode_barang', 'nama_barang', 'jumlah', 'username', 'tanggal_pinjam', 'tanggal_kembali'];
 
-    public function peminjaman()
+    // public function persediaan()
+    // {
+    //     return $this->belongsTo(Persediaan::class, 'id_persediaan');
+    // }
+
+    // public function pengelolaan() {
+    //     return $this->hasOne(pengelolaan::class, 'pengelolaan');
+    // 
+
+    // 1 barang → banyak riwayat pengelolaan stok
+    public function pengelolaan()
     {
-        return $this->hasMany(Peminjaman::class, 'id_persediaan');
+        return $this->hasMany(Pengelolaan::class, 'id_peminjaman');
     }
+
+    
 }

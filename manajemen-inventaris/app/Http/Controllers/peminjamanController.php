@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\peminjaman;
+use App\Models\pengelolaan;
 use App\Models\persediaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class peminjamanController extends Controller
 {
@@ -34,26 +36,52 @@ class peminjamanController extends Controller
         $validated = $request->validate([
             'kode_barang' => 'required:min3',
             'jumlah' => 'required',
-            'username' => 'required'
+            'username' => 'required',
+            'tanggal_kembali' => 'nullable',
         ]);
 
-        $persediaan = persediaan::where('kode_barang', $validated['kode_barang'])->firstOrFail();
+        DB::transaction(function () use ($validated) {
+
+            $persediaan = Persediaan::where('kode_barang', $validated['kode_barang'])->firstOrFail();
+
+            if ($persediaan->jumlah < $validated['jumlah']) {
+                throw new \Exception('Stok tidak mencukupi');
+            }
+
+            $peminjaman = $persediaan->peminjaman()->create([
+                'kode_barang'    => $persediaan->kode_barang,
+                'nama_barang'    => $persediaan->nama_barang,
+                'jumlah'         => $validated['jumlah'],
+                'username'       => $validated['username'],
+                'tanggal_pinjam' => now()->toDateString(),
+            ]);
+
+            // $persediaan->decrement('jumlah', $validated['jumlah']);
+
+            // Pengelolaan::create([
+            //     'id_persediaan' => $persediaan->id,
+            //     'kode_barang' => $persediaan->kode_barang,
+            //     'nama_barang' => $persediaan->nama_barang,
+            //     'masuk_stok' => $persediaan->jumlah,
+            //     'keluar_stok' => $peminjaman->jumlah,
+            //     'total_stok' => $persediaan->jumlah - $peminjaman->jumlah,
+            //     'id_peminjaman' => $peminjaman->id,
+            //     'stok_keluar'   => $validated['jumlah'],
+            // ]);
+
+            $total_stok = $persediaan->jumlah - $peminjaman->jumlah;
+
+            pengelolaan::where('id', $persediaan->id)->update(
+                [
+                    'id_peminjaman' => $peminjaman->id,
+                    'keluar_stok' => $peminjaman->jumlah,
+                    'total_stok' => $total_stok,
+                ]
+            );
+        });
 
 
-        $validated = $request->validate([
-            'kode_barang' => 'required|exists:persediaan,kode_barang',
-            'jumlah' => 'required|integer|min:1',
-            'username' => 'required|string|min:3',
-            'tanggal_kembali' => 'nullable|date',
-        ]);
-
-        $persediaan->peminjaman()->create([
-            'kode_barang' => $persediaan->kode_barang,
-            'nama_barang' => $persediaan->nama_barang,
-            'jumlah' => $validated['jumlah'] ,
-            'username' => $validated['username'],
-            'tanggal_pinjam' => now()->toDateString(),
-        ]);
+        return redirect()->route('peminjaman.index')->with('success', 'peminjaman berhasil ditambahkan');
     }
 
     /**
@@ -82,7 +110,7 @@ class peminjamanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-           $validated = $request->validate([
+        $validated = $request->validate([
             'kode_barang' => 'required:min3',
             'jumlah' => 'required',
             'username' => 'required'
@@ -101,7 +129,7 @@ class peminjamanController extends Controller
         peminjaman::where('id', $id)->update([
             'kode_barang' => $persediaan->kode_barang,
             'nama_barang' => $persediaan->nama_barang,
-            'jumlah' => $validated['jumlah'] ,
+            'jumlah' => $validated['jumlah'],
             'username' => $validated['username'],
             'tanggal_kembali' => $validated['tanggal_kembali']
         ]);

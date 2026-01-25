@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->string('username');
             $table->date('tanggal_pinjam');
-            $table->date('tanggal_kembali');
+            $table->date('tanggal_kembali')->nullable();
         });
     }
 

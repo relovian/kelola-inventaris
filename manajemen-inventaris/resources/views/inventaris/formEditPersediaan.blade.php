@@ -7,7 +7,7 @@
     <title>Form</title>
 </head>
 <body>
-    <h1>Tambah Persediaan</h1>
+    <h1>Edit Persediaan</h1>
 
     <form action="{{ route('persediaan.update', ['id' => $persediaanDetail->id]) }}" method="POST">
         @csrf
@@ -24,7 +24,7 @@
         <label for="number">Jumlah : </label> <br>
         <input type="number" id="jumlah" name="jumlah" value="{{ old('jumlah', $persediaanDetail->jumlah??'') }}"> <br> <br>
 
-        <button type="submit">tambah</button>
+        <button type="submit">Edit</button>
     </form>
 </body>
 </html>

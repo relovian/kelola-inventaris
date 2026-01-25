@@ -7,7 +7,7 @@
     <title>tambah peminjaman</title>
 </head>
 <body>
-    <h1>Tambah Peminjaman</h1>
+    <h1>Edit Peminjaman</h1>
     <form action="{{ route('peminjaman.update', ['id' => $peminjamanDetail->id]) }}" method="POST">
         @method('PUT')
         @csrf

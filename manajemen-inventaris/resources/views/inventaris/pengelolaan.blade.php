@@ -86,18 +86,22 @@
             </tr>
         </thead>
         <tbody>
+
+            {{ var_dump($pengelolaan) }}
+            
+
             @foreach ($pengelolaan as $item)
 
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->kode_barang }}</td>
                     <td>{{ $item->nama_barang }}</td>
-                    <td>{{ $item->masuk_stok }}</td>
-                    <td>{{ $item->keluar_stok }}</td>
-                    <td>{{ $item->total_stok }}</td>
+                    <td>{{ $item->stok_masuk }}</td>
+                    <td>{{ $item->stok_keluar }}</td>
+                    <td>{{ $item->stok_masuk - $item->stok_keluar }}</td>
                     <td>
-                        <a href="{{ route('peminjaman.edit', ['id' =>  $item->id]) }}">edit</a>
-                        <a href="{{ route('peminjaman.destroy', ['id' => $item->id]) }}">hapus</a>
+                        <a href="">edit</a>
+                        <a href="">hapus</a>
                     </td>
                 </tr>   
             @endforeach
